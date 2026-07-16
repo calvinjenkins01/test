@@ -1,8 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { X, Download } from 'lucide-react'
-import { FFmpeg, fetchFile } from '@ffmpeg/ffmpeg'
-
-const ffmpeg = new FFmpeg()
 
 export default function ExportDialog({
   mainVideo,
