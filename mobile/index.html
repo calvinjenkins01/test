@@ -66,7 +66,7 @@
   }
 
   /* ---------- stage ---------- */
-  .stage-col { display: grid; gap: 10px; }
+  .stage-col { display: grid; gap: 8px; }
   .stage {
     position: relative;
     display: flex; justify-content: center; align-items: center;
@@ -74,9 +74,9 @@
     border: 1px solid var(--line); border-radius: var(--radius);
     overflow: hidden;
     touch-action: none;
-    min-height: 200px;
+    min-height: 180px;
   }
-  #cv { display: block; max-width: 100%; max-height: 52vh; width: auto; height: auto; }
+  #cv { display: block; max-width: 100%; max-height: 44vh; width: auto; height: auto; }
 
   #selBox {
     position: absolute; display: none; pointer-events: none;
@@ -105,33 +105,75 @@
   /* ---------- transport ---------- */
   .transport {
     display: flex; align-items: center; gap: 10px;
-    background: var(--surface); border: 1px solid var(--line);
-    border-radius: var(--radius); padding: 8px 12px;
+    padding: 0 2px;
   }
   #playBtn {
-    width: 46px; height: 46px; flex: none;
+    width: 44px; height: 44px; flex: none;
     border-radius: 50%; border: 0;
     background: var(--accent); color: #16090a;
     display: flex; align-items: center; justify-content: center;
-    font-size: 17px;
+    font-size: 16px;
   }
   #playBtn:disabled { background: var(--surface-2); color: var(--muted); }
   .timecode { font-family: var(--mono); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
   .timecode b { color: var(--text); font-weight: 600; }
 
-  input[type="range"] {
-    -webkit-appearance: none; appearance: none;
-    width: 100%; height: 32px; background: none; touch-action: pan-y;
+  .tool-btn {
+    display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+    background: none; border: 0; color: var(--text);
+    font-size: 10.5px; font-weight: 600;
+    min-width: 52px; min-height: 44px; border-radius: 9px;
   }
-  input[type="range"]::-webkit-slider-runnable-track { height: 5px; border-radius: 3px; background: var(--line); }
-  input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none; appearance: none;
-    width: 24px; height: 24px; border-radius: 50%;
-    background: var(--text); margin-top: -9.5px; border: 0;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  .tool-btn .ico { font-size: 17px; line-height: 1; }
+  .tool-btn:disabled { opacity: 0.35; }
+  .tool-btn:active:not(:disabled) { background: var(--surface-2); }
+
+  /* ---------- timeline ---------- */
+  #tlArea { display: none; }
+  #tlArea.on { display: block; }
+  #tlWrap {
+    position: relative;
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
   }
-  input[type="range"]::-moz-range-track { height: 5px; border-radius: 3px; background: var(--line); }
-  input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; border-radius: 50%; background: var(--text); border: 0; }
+  #tlScroll {
+    overflow-x: auto; overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    touch-action: pan-x;
+  }
+  #tlScroll::-webkit-scrollbar { display: none; }
+  #tlTrack { display: flex; align-items: center; height: 76px; }
+  .tlSpacer { flex: none; height: 1px; }
+  .tlSeg {
+    position: relative; flex: none;
+    height: 56px; border-radius: 8px;
+    overflow: hidden;
+    margin-right: 4px;
+    background:
+      repeating-linear-gradient(45deg, var(--surface-2) 0 8px, var(--line) 8px 16px);
+    border: 2px solid transparent;
+  }
+  .tlSeg.selected { border-color: var(--accent); }
+  .tlSeg .inner { position: absolute; top: 0; left: 0; height: 100%; display: flex; }
+  .tlSeg img { height: 100%; flex: none; object-fit: cover; pointer-events: none; }
+  #playhead {
+    position: absolute; top: 4px; bottom: 4px; left: 50%;
+    width: 2px; margin-left: -1px;
+    background: #fff; border-radius: 1px;
+    box-shadow: 0 0 6px rgba(0,0,0,0.8);
+    pointer-events: none; z-index: 2;
+  }
+  #playhead::before {
+    content: ""; position: absolute; top: -3px; left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent; border-top-color: #fff;
+  }
+  .clip-tools {
+    display: flex; align-items: center; justify-content: center; gap: 4px;
+  }
+  .clip-tools .sep { width: 1px; height: 26px; background: var(--line); margin: 0 4px; }
 
   /* ---------- tab bar ---------- */
   .tabbar {
@@ -219,6 +261,20 @@
     border-radius: 9px; padding: 11px; font-size: 16px; width: 100%;
   }
 
+  input[type="range"] {
+    -webkit-appearance: none; appearance: none;
+    width: 100%; height: 32px; background: none; touch-action: pan-y;
+  }
+  input[type="range"]::-webkit-slider-runnable-track { height: 5px; border-radius: 3px; background: var(--line); }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--text); margin-top: -9.5px; border: 0;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  }
+  input[type="range"]::-moz-range-track { height: 5px; border-radius: 3px; background: var(--line); }
+  input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; border-radius: 50%; background: var(--text); border: 0; }
+
   .note {
     font-size: 12.5px; color: var(--muted); line-height: 1.55;
     border-left: 2px solid var(--line); padding-left: 10px;
@@ -231,7 +287,6 @@
   }
   .swatch[aria-pressed="true"] { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft); }
 
-  /* layout template cards */
   .layouts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
   .layout-card {
     border: 1px solid var(--line); background: var(--surface-2);
@@ -297,10 +352,29 @@
       </div>
     </div>
     <div class="stage-hint" id="stageHint" hidden>DRAG THE OVERLAY WITH YOUR FINGER · PINCH TO RESIZE</div>
+
     <div class="transport">
       <button id="playBtn" disabled aria-label="Play">▶</button>
-      <input type="range" id="scrub" min="0" max="1000" value="0" step="1" aria-label="Timeline" disabled>
       <div class="timecode"><b id="tcNow">0:00.0</b> / <span id="tcDur">0:00.0</span></div>
+      <div class="spacer"></div>
+      <div class="clip-tools" id="clipTools" style="visibility:hidden;">
+        <button class="tool-btn" id="splitBtn"><span class="ico">✂️</span>Split</button>
+        <button class="tool-btn" id="delSegBtn"><span class="ico">🗑</span>Delete</button>
+        <button class="tool-btn" id="undoBtn" disabled><span class="ico">↩️</span>Undo</button>
+        <div class="sep"></div>
+        <button class="tool-btn" id="zoomOut"><span class="ico">－</span>Zoom</button>
+        <button class="tool-btn" id="zoomIn"><span class="ico">＋</span>Zoom</button>
+      </div>
+    </div>
+
+    <div id="tlArea">
+      <div id="tlWrap">
+        <div id="tlScroll">
+          <div id="tlTrack"></div>
+        </div>
+        <div id="playhead"></div>
+      </div>
+      <div class="stage-hint" style="margin-top:6px;">SWIPE THE FILMSTRIP TO SCRUB · TAP A CLIP, THEN SPLIT OR DELETE</div>
     </div>
   </div>
 
@@ -337,6 +411,8 @@
         <button class="btn btn-sm" id="swapBtn">⇅ Swap layers</button>
         <span style="font-size:12px;color:var(--muted);">Article in back, your head in front</span>
       </div>
+
+      <div class="note" id="cutNote" hidden>To cut this video: swipe the filmstrip under the preview to a spot, tap <b>Split</b>, then tap the piece you don't want and hit <b>Delete</b>.</div>
     </section>
 
     <section class="panel" data-tab-panel="layers" id="mainOptsPanel" hidden>
@@ -349,19 +425,6 @@
         <div class="ctl-head"><label for="volR">Your volume</label><output id="volO">100%</output></div>
         <input type="range" id="volR" min="0" max="100" value="100">
       </div>
-    </section>
-
-    <section class="panel" data-tab-panel="layers" id="trimPanel" hidden>
-      <div class="eyebrow">Trim</div>
-      <div class="ctl">
-        <div class="ctl-head"><label for="trimInR">Start at</label><output id="trimInO">0:00.0</output></div>
-        <input type="range" id="trimInR" min="0" max="1000" value="0">
-      </div>
-      <div class="ctl">
-        <div class="ctl-head"><label for="trimOutR">End at</label><output id="trimOutO">0:00.0</output></div>
-        <input type="range" id="trimOutR" min="0" max="1000" value="1000">
-      </div>
-      <div class="note" id="trimNote">Cut dead air off the start and end — the export only includes this range.</div>
     </section>
 
     <!-- ============ LOOK TAB ============ -->
@@ -574,7 +637,7 @@
       <label class="q-opt"><input type="radio" name="q" value="720" checked><div><b>HD · 720p</b><span>great for most posts</span></div></label>
       <label class="q-opt"><input type="radio" name="q" value="1080"><div><b>Full HD · 1080p</b><span>maximum quality</span></div></label>
     </div>
-    <div class="note">The trimmed video plays through once while it records — keep this tab open. Your voice audio is included.</div>
+    <div class="note">Your edited cut plays through once while it records — keep this tab open. Your voice audio is included.</div>
     <div id="exportProg" hidden>
       <div class="export-status"><span id="expLabel">RENDERING</span><span id="expPct">0%</span></div>
       <div class="progress-track" style="margin-top:6px;"><div class="progress-fill" id="expFill"></div></div>
@@ -600,7 +663,6 @@
     aspect: 'v',
     quality: 720,
     main: { url: null, name: '', ready: false, mirror: false, vol: 1, speed: 1 },
-    trim: { in: 0, out: 0 },
     ov: {
       url: null, name: '', kind: null,
       w: 0, h: 0,
@@ -616,6 +678,34 @@
     exporting: false,
   };
 
+  // ---------- clips (CapCut-style timeline segments, in source seconds) ----------
+  let segs = [];                 // [{in, out}]
+  let selSeg = -1;               // selected segment index
+  const undoStack = [];
+  const ZOOMS = [30, 60, 120];
+  let zoomIdx = 1;
+  const pps = () => ZOOMS[zoomIdx];  // pixels per second
+
+  const totalDur = () => segs.reduce((a, s) => a + (s.out - s.in), 0);
+
+  function tlToSrc(t) {
+    for (const sg of segs) {
+      const len = sg.out - sg.in;
+      if (t <= len) return sg.in + Math.max(0, t);
+      t -= len;
+    }
+    return segs.length ? segs[segs.length - 1].out : 0;
+  }
+  function srcToTl(s) {
+    let acc = 0;
+    for (const sg of segs) {
+      if (s < sg.in) return acc;
+      if (s <= sg.out) return acc + (s - sg.in);
+      acc += sg.out - sg.in;
+    }
+    return acc;
+  }
+
   const cv = $('cv'), ctx = cv.getContext('2d');
   const stage = $('stage'), selBox = $('selBox');
   const FILTER_OK = typeof ctx.filter === 'string';
@@ -623,9 +713,11 @@
 
   const vidMain = document.createElement('video');
   const vidOv = document.createElement('video');
+  const vThumb = document.createElement('video');
   const imgOv = new Image();
-  for (const v of [vidMain, vidOv]) { v.playsInline = true; v.preload = 'auto'; v.crossOrigin = 'anonymous'; }
+  for (const v of [vidMain, vidOv, vThumb]) { v.playsInline = true; v.preload = 'auto'; v.crossOrigin = 'anonymous'; }
   vidOv.muted = true; vidOv.loop = true;
+  vThumb.muted = true;
 
   // ---------- canvas sizing ----------
   function ratio() { return S.aspect === 'v' ? 9 / 16 : S.aspect === 's' ? 1 : 16 / 9; }
@@ -690,13 +782,13 @@
     return S.ov.kind === 'video' ? vidOv.readyState >= 2 : (imgOv.complete && imgOv.naturalWidth > 0);
   }
 
-  function hideAtEff() { return isFinite(S.ov.hideAt) ? S.ov.hideAt : (vidMain.duration || Infinity); }
+  function hideAtEff() { return isFinite(S.ov.hideAt) ? S.ov.hideAt : totalDur() || Infinity; }
 
-  // intro / outro relative to the overlay's visible window
-  function motion(t) {
+  // intro / outro relative to the overlay's visible window (timeline time)
+  function motion(tl) {
     let alpha = 1, scale = 1, ox = 0, oy = 0;
     const H = cv.height, W = cv.width;
-    const local = t - S.ov.showAt;
+    const local = tl - S.ov.showAt;
     const span = hideAtEff() - S.ov.showAt;
     const { type: it, dur: idur } = S.intro;
     if (it !== 'none' && local < idur) {
@@ -718,7 +810,23 @@
   }
 
   // ---------- draw loop ----------
+  let exportStopFn = null;
+
+  function stepPlayback() {
+    // jump across deleted regions / segment boundaries while playing
+    if (vidMain.paused || !segs.length || vidMain.seeking) return;
+    const t = vidMain.currentTime;
+    const idx = segs.findIndex((sg) => t < sg.out - 0.03);
+    if (idx === -1) {
+      vidMain.pause();
+      if (S.exporting && exportStopFn) exportStopFn();
+      return;
+    }
+    if (t < segs[idx].in - 0.02) vidMain.currentTime = segs[idx].in;
+  }
+
   function draw() {
+    stepPlayback();
     const W = cv.width, H = cv.height;
     ctx.clearRect(0, 0, W, H);
     ctx.fillStyle = '#000';
@@ -733,11 +841,11 @@
       ctx.restore();
     }
 
-    const t = vidMain.currentTime || 0;
-    const ovVisible = ovReady() && t >= S.ov.showAt && t <= hideAtEff();
+    const tl = srcToTl(vidMain.currentTime || 0);
+    const ovVisible = ovReady() && tl >= S.ov.showAt && tl <= hideAtEff();
 
     if (ovVisible) {
-      const m = motion(t);
+      const m = motion(tl);
       if (m.alpha > 0.004) {
         const r = ovRect();
         const media = ovMedia();
@@ -750,7 +858,6 @@
         ctx.globalAlpha = S.ov.alpha * m.alpha;
         const rad = (S.ov.circle ? 1 : S.ov.rad) * Math.min(r.w, r.h) / 2;
 
-        // drop shadow (drawn on a filled path so the clip doesn't kill it)
         if (S.ov.shadow) {
           ctx.save();
           ctx.shadowColor = 'rgba(0,0,0,0.5)';
@@ -780,6 +887,12 @@
     }
 
     if (S.cap.on && S.cap.text.trim()) drawCaption();
+
+    // keep filmstrip under the playhead while playing
+    if (!vidMain.paused && segs.length) {
+      progScroll = tl * pps();
+      tlScroll.scrollLeft = progScroll;
+    }
 
     updateSelBox();
     requestAnimationFrame(draw);
@@ -826,6 +939,154 @@
   }
   requestAnimationFrame(draw);
 
+  // ---------- timeline (filmstrip) ----------
+  const tlScroll = $('tlScroll'), tlTrack = $('tlTrack');
+  let thumbs = [];        // [{t, url}] over the whole source video
+  let thumbInterval = 1;
+  let progScroll = -1;
+
+  function spacerW() { return Math.round($('tlWrap').clientWidth / 2); }
+
+  function rebuildTimeline() {
+    tlTrack.innerHTML = '';
+    const spL = document.createElement('div');
+    spL.className = 'tlSpacer';
+    spL.style.width = spacerW() + 'px';
+    tlTrack.appendChild(spL);
+
+    segs.forEach((sg, i) => {
+      const el = document.createElement('div');
+      el.className = 'tlSeg' + (i === selSeg ? ' selected' : '');
+      el.style.width = Math.max(8, (sg.out - sg.in) * pps()) + 'px';
+      const inner = document.createElement('div');
+      inner.className = 'inner';
+      inner.style.marginLeft = -(sg.in * pps()) + 'px';
+      for (const th of thumbs) {
+        const img = document.createElement('img');
+        img.src = th.url;
+        img.style.width = thumbInterval * pps() + 'px';
+        img.draggable = false;
+        inner.appendChild(img);
+      }
+      el.appendChild(inner);
+      el.addEventListener('click', () => {
+        selSeg = selSeg === i ? -1 : i;
+        rebuildTimeline();
+        updateClipTools();
+      });
+      tlTrack.appendChild(el);
+    });
+
+    const spR = document.createElement('div');
+    spR.className = 'tlSpacer';
+    spR.style.width = spacerW() + 'px';
+    tlTrack.appendChild(spR);
+
+    // keep playhead where it was
+    progScroll = srcToTl(vidMain.currentTime) * pps();
+    tlScroll.scrollLeft = progScroll;
+    $('tcDur').textContent = fmt(totalDur());
+    syncTimingSliders();
+  }
+
+  // swiping the strip scrubs (only while paused; playback owns the scroll)
+  tlScroll.addEventListener('pointerdown', () => { if (!vidMain.paused) vidMain.pause(); });
+  tlScroll.addEventListener('scroll', () => {
+    if (!segs.length) return;
+    if (Math.abs(tlScroll.scrollLeft - progScroll) < 2) return;  // our own programmatic scroll
+    if (!vidMain.paused) return;
+    const tl = clamp(tlScroll.scrollLeft / pps(), 0, Math.max(0, totalDur() - 0.05));
+    if (!vidMain.seeking) {
+      vidMain.currentTime = tlToSrc(tl);
+      if (S.ov.kind === 'video' && vidOv.duration) vidOv.currentTime = Math.max(0, tl - S.ov.showAt) % vidOv.duration;
+    }
+    $('tcNow').textContent = fmt(tl);
+  });
+
+  window.addEventListener('resize', () => { if (segs.length) rebuildTimeline(); });
+
+  // thumbnails, generated progressively from a separate video element
+  async function generateThumbs() {
+    thumbs = [];
+    const dur = vThumb.duration;
+    if (!isFinite(dur) || dur <= 0) return;
+    thumbInterval = Math.max(0.5, dur / 60);
+    const tc = document.createElement('canvas');
+    const isVert = vThumb.videoHeight >= vThumb.videoWidth;
+    tc.width = isVert ? 62 : 110; tc.height = 62;
+    const tctx = tc.getContext('2d');
+    for (let t = 0, n = 0; t < dur; t += thumbInterval, n++) {
+      try {
+        vThumb.currentTime = Math.min(t + 0.01, dur - 0.01);
+        await new Promise((res, rej) => {
+          const to = setTimeout(() => rej(new Error('thumb timeout')), 3000);
+          vThumb.addEventListener('seeked', () => { clearTimeout(to); res(); }, { once: true });
+        });
+        const c = coverCrop(vThumb.videoWidth, vThumb.videoHeight, tc.width, tc.height);
+        tctx.drawImage(vThumb, c.sx, c.sy, c.sw, c.sh, 0, 0, tc.width, tc.height);
+        thumbs.push({ t, url: tc.toDataURL('image/jpeg', 0.55) });
+        if (n % 10 === 9) rebuildTimeline();
+      } catch (_) { break; }
+    }
+    rebuildTimeline();
+  }
+
+  // ---------- clip tools ----------
+  function segAtPlayhead() {
+    const t = vidMain.currentTime;
+    return segs.findIndex((sg) => t >= sg.in - 0.02 && t <= sg.out + 0.02);
+  }
+
+  function pushUndo() {
+    undoStack.push(segs.map((s) => ({ ...s })));
+    if (undoStack.length > 40) undoStack.shift();
+  }
+
+  function updateClipTools() {
+    const i = segAtPlayhead();
+    const t = vidMain.currentTime;
+    $('splitBtn').disabled = i === -1 || t - segs[i]?.in < 0.2 || segs[i]?.out - t < 0.2;
+    $('delSegBtn').disabled = segs.length <= 1 || (selSeg === -1 && i === -1);
+    $('undoBtn').disabled = !undoStack.length;
+  }
+  setInterval(updateClipTools, 300);
+
+  $('splitBtn').addEventListener('click', () => {
+    const t = vidMain.currentTime;
+    const i = segAtPlayhead();
+    if (i === -1) return;
+    const sg = segs[i];
+    if (t - sg.in < 0.2 || sg.out - t < 0.2) return;
+    pushUndo();
+    segs.splice(i, 1, { in: sg.in, out: t }, { in: t, out: sg.out });
+    selSeg = -1;
+    rebuildTimeline();
+  });
+
+  $('delSegBtn').addEventListener('click', () => {
+    if (segs.length <= 1) return;
+    const i = selSeg !== -1 ? selSeg : segAtPlayhead();
+    if (i === -1) return;
+    pushUndo();
+    const tlBefore = srcToTl(vidMain.currentTime);
+    segs.splice(i, 1);
+    selSeg = -1;
+    S.ov.showAt = Math.min(S.ov.showAt, totalDur());
+    if (isFinite(S.ov.hideAt)) S.ov.hideAt = Math.min(S.ov.hideAt, totalDur());
+    vidMain.currentTime = tlToSrc(clamp(tlBefore, 0, Math.max(0, totalDur() - 0.05)));
+    rebuildTimeline();
+  });
+
+  $('undoBtn').addEventListener('click', () => {
+    if (!undoStack.length) return;
+    segs = undoStack.pop();
+    selSeg = -1;
+    rebuildTimeline();
+  });
+
+  $('zoomIn').addEventListener('click', () => { zoomIdx = Math.min(ZOOMS.length - 1, zoomIdx + 1); rebuildTimeline(); });
+  $('zoomOut').addEventListener('click', () => { zoomIdx = Math.max(0, zoomIdx - 1); rebuildTimeline(); });
+
   // ---------- selection box ----------
   function capRect() {
     const W = cv.width, H = cv.height;
@@ -856,7 +1117,7 @@
     selBox.querySelector('.handle').style.display = S.sel === 'ov' ? 'block' : 'none';
   }
 
-  // ---------- pointer interaction ----------
+  // ---------- pointer interaction on stage ----------
   const pointers = new Map();
   let drag = null;
 
@@ -994,6 +1255,8 @@
     S.main.ready = false;
     vidMain.src = S.main.url;
     vidMain.load();
+    vThumb.src = S.main.url;
+    vThumb.load();
     $('mainName').textContent = f.name;
     $('mainAdd').textContent = 'Replace';
     fileMain.value = '';
@@ -1001,21 +1264,23 @@
 
   vidMain.addEventListener('loadedmetadata', () => {
     S.main.ready = true;
-    S.trim.in = 0;
-    S.trim.out = vidMain.duration;
-    $('trimInR').value = 0; $('trimOutR').value = 1000;
-    $('trimInO').textContent = fmt(0);
-    $('trimOutO').textContent = fmt(vidMain.duration);
+    segs = [{ in: 0, out: vidMain.duration }];
+    selSeg = -1;
+    undoStack.length = 0;
     $('emptyState').style.display = 'none';
     $('mainOptsPanel').hidden = false;
-    $('trimPanel').hidden = false;
+    $('cutNote').hidden = false;
     $('playBtn').disabled = false;
-    $('scrub').disabled = false;
     $('exportOpen').disabled = false;
-    $('tcDur').textContent = fmt(vidMain.duration);
+    $('tlArea').classList.add('on');
+    $('clipTools').style.visibility = 'visible';
+    $('tcDur').textContent = fmt(totalDur());
+    rebuildTimeline();
     updateSwapRow();
     refreshTab();
   });
+
+  vThumb.addEventListener('loadedmetadata', () => { generateThumbs(); });
 
   fileOv.addEventListener('change', () => {
     const f = fileOv.files[0];
@@ -1071,19 +1336,20 @@
     S.main.ready = false;
     vidMain.src = S.main.url; vidMain.load();
     vidOv.src = S.ov.url; vidOv.load();
+    vThumb.src = S.main.url; vThumb.load();
     $('mainName').textContent = S.main.name;
     $('ovName').textContent = S.ov.name;
     if (wasPlaying) vidMain.addEventListener('canplay', () => vidMain.play(), { once: true });
   });
 
   // ---------- transport ----------
-  const playBtn = $('playBtn'), scrub = $('scrub');
+  const playBtn = $('playBtn');
 
   playBtn.addEventListener('click', () => {
+    if (!segs.length) return;
     if (vidMain.paused) {
-      if (vidMain.currentTime < S.trim.in || vidMain.currentTime >= S.trim.out - 0.05) {
-        vidMain.currentTime = S.trim.in;
-      }
+      const tl = srcToTl(vidMain.currentTime);
+      if (tl >= totalDur() - 0.08) vidMain.currentTime = segs[0].in;
       vidMain.playbackRate = S.main.speed;
       vidOv.playbackRate = S.main.speed;
       vidMain.play();
@@ -1095,26 +1361,14 @@
   });
   vidMain.addEventListener('play', () => { playBtn.textContent = '❚❚'; playBtn.setAttribute('aria-label', 'Pause'); });
   vidMain.addEventListener('pause', () => { playBtn.textContent = '▶'; playBtn.setAttribute('aria-label', 'Play'); vidOv.pause(); });
-  vidMain.addEventListener('ended', () => { vidOv.pause(); });
+  vidMain.addEventListener('ended', () => {
+    vidOv.pause();
+    if (S.exporting && exportStopFn) exportStopFn();
+  });
 
-  let scrubbing = false;
   vidMain.addEventListener('timeupdate', () => {
-    $('tcNow').textContent = fmt(vidMain.currentTime);
-    if (!scrubbing) scrub.value = (vidMain.currentTime / (vidMain.duration || 1)) * 1000;
-    // stop at trim end during preview (export handles its own stop)
-    if (!S.exporting && !vidMain.paused && vidMain.currentTime >= S.trim.out - 0.04) {
-      vidMain.pause();
-    }
+    $('tcNow').textContent = fmt(srcToTl(vidMain.currentTime));
   });
-
-  scrub.addEventListener('pointerdown', () => { scrubbing = true; });
-  scrub.addEventListener('input', () => {
-    const t = (scrub.value / 1000) * (vidMain.duration || 0);
-    vidMain.currentTime = t;
-    if (S.ov.kind === 'video' && vidOv.duration) vidOv.currentTime = Math.max(0, t - S.ov.showAt) % vidOv.duration;
-    $('tcNow').textContent = fmt(t);
-  });
-  scrub.addEventListener('change', () => { scrubbing = false; });
 
   // ---------- aspect ----------
   document.querySelectorAll('[data-aspect]').forEach((b) => {
@@ -1131,22 +1385,6 @@
     S.main.vol = e.target.value / 100;
     vidMain.volume = S.main.vol;
     $('volO').textContent = e.target.value + '%';
-  });
-
-  // ---------- trim ----------
-  $('trimInR').addEventListener('input', (e) => {
-    const d = vidMain.duration || 0;
-    S.trim.in = Math.min((e.target.value / 1000) * d, S.trim.out - 0.5);
-    e.target.value = (S.trim.in / d) * 1000;
-    $('trimInO').textContent = fmt(S.trim.in);
-    vidMain.currentTime = S.trim.in;
-  });
-  $('trimOutR').addEventListener('input', (e) => {
-    const d = vidMain.duration || 0;
-    S.trim.out = Math.max((e.target.value / 1000) * d, S.trim.in + 0.5);
-    e.target.value = (S.trim.out / d) * 1000;
-    $('trimOutO').textContent = fmt(S.trim.out);
-    vidMain.currentTime = S.trim.out;
   });
 
   // ---------- overlay controls ----------
@@ -1239,18 +1477,32 @@
   $('introDurR').addEventListener('input', (e) => { S.intro.dur = e.target.value / 10; $('introDurO').textContent = S.intro.dur.toFixed(1) + 's'; });
   $('outroDurR').addEventListener('input', (e) => { S.outro.dur = e.target.value / 10; $('outroDurO').textContent = S.outro.dur.toFixed(1) + 's'; });
 
+  function syncTimingSliders() {
+    const d = totalDur();
+    if (!d) return;
+    $('showAtR').value = clamp((S.ov.showAt / d) * 1000, 0, 1000);
+    $('showAtO').textContent = fmt(Math.min(S.ov.showAt, d));
+    if (isFinite(S.ov.hideAt)) {
+      $('hideAtR').value = clamp((S.ov.hideAt / d) * 1000, 0, 1000);
+      $('hideAtO').textContent = fmt(Math.min(S.ov.hideAt, d));
+    } else {
+      $('hideAtR').value = 1000;
+      $('hideAtO').textContent = 'end';
+    }
+  }
+
   $('showAtR').addEventListener('input', (e) => {
-    const d = vidMain.duration || 0;
+    const d = totalDur();
     S.ov.showAt = (e.target.value / 1000) * d;
     $('showAtO').textContent = fmt(S.ov.showAt);
-    vidMain.currentTime = S.ov.showAt;
+    vidMain.currentTime = tlToSrc(S.ov.showAt);
   });
   $('hideAtR').addEventListener('input', (e) => {
-    const d = vidMain.duration || 0;
+    const d = totalDur();
     const v = (e.target.value / 1000) * d;
     S.ov.hideAt = e.target.value >= 999 ? Infinity : v;
     $('hideAtO').textContent = e.target.value >= 999 ? 'end' : fmt(v);
-    if (isFinite(S.ov.hideAt)) vidMain.currentTime = v;
+    if (isFinite(S.ov.hideAt)) vidMain.currentTime = tlToSrc(v);
   });
 
   $('speedChips').addEventListener('click', (e) => {
@@ -1311,6 +1563,7 @@
 
   function finishExportUI() {
     S.exporting = false;
+    exportStopFn = null;
     $('exportStart').disabled = false;
     $('exportProg').hidden = true;
     $('expFill').style.width = '0%';
@@ -1318,8 +1571,8 @@
   }
 
   $('exportStart').addEventListener('click', async () => {
-    if (!S.main.ready || S.exporting) return;
-    S.exporting = true; recCancelled = false; S.sel = null;
+    if (!S.main.ready || S.exporting || !segs.length) return;
+    S.exporting = true; recCancelled = false; S.sel = null; selSeg = -1;
     $('exportStart').disabled = true;
     $('exportProg').hidden = false;
 
@@ -1355,22 +1608,19 @@
       recorder.ondataavailable = (e) => { if (e.data && e.data.size) chunks.push(e.data); };
       const done = new Promise((res) => { recorder.onstop = res; });
 
-      // rewind to trim start, then record one play-through of the trimmed range
+      exportStopFn = () => { try { recorder.state !== 'inactive' && recorder.stop(); } catch (_) {} };
+
+      // rewind to the first clip; segment jumps happen in the draw loop
       vidMain.pause(); vidOv.pause();
-      vidMain.currentTime = S.trim.in;
+      vidMain.currentTime = segs[0].in;
       if (S.ov.kind === 'video') vidOv.currentTime = 0;
       await new Promise((res) => vidMain.addEventListener('seeked', res, { once: true }));
 
-      const stopRec = () => { try { recorder.state !== 'inactive' && recorder.stop(); } catch (_) {} };
-      const onEnd = () => stopRec();
-      vidMain.addEventListener('ended', onEnd, { once: true });
-
       const onProg = () => {
-        const span = S.trim.out - S.trim.in;
-        const pct = Math.min(100, Math.round(((vidMain.currentTime - S.trim.in) / span) * 100));
+        const total = totalDur();
+        const pct = Math.min(100, Math.round((srcToTl(vidMain.currentTime) / total) * 100));
         $('expPct').textContent = Math.max(0, pct) + '%';
         $('expFill').style.width = Math.max(0, pct) + '%';
-        if (vidMain.currentTime >= S.trim.out - 0.04) { vidMain.pause(); stopRec(); }
       };
       vidMain.addEventListener('timeupdate', onProg);
 
@@ -1382,7 +1632,6 @@
 
       await done;
       vidMain.removeEventListener('timeupdate', onProg);
-      vidMain.removeEventListener('ended', onEnd);
       vidMain.pause(); vidOv.pause();
 
       if (!recCancelled && chunks.length) {
@@ -1401,6 +1650,7 @@
         $('expPct').textContent = '100%';
         $('expFill').style.width = '100%';
         S.exporting = false;
+        exportStopFn = null;
         $('exportStart').disabled = false;
         setTimeout(finishExportUI, 4000);
         return;
@@ -1409,6 +1659,7 @@
       console.error(err);
       $('expLabel').textContent = 'EXPORT FAILED — TRY A LOWER QUALITY';
       S.exporting = false;
+      exportStopFn = null;
       $('exportStart').disabled = false;
       setTimeout(finishExportUI, 4000);
       return;
