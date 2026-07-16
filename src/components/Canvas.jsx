@@ -131,14 +131,29 @@ export default function Canvas({ mainVideoUrl, overlayVideoUrl, overlay, animati
           ctx.rotate((animatedRotation * Math.PI) / 180)
           ctx.scale(animatedScale, animatedScale)
 
+          // Rounded rectangle with fallback
+          const x = -overlayWidth / 2
+          const y = -overlayHeight / 2
+          const w = overlayWidth
+          const h = overlayHeight
+          const r = overlay.borderRadius
+
           ctx.beginPath()
-          ctx.roundRect(
-            -overlayWidth / 2,
-            -overlayHeight / 2,
-            overlayWidth,
-            overlayHeight,
-            overlay.borderRadius
-          )
+          if (typeof ctx.roundRect === 'function') {
+            ctx.roundRect(x, y, w, h, r)
+          } else {
+            // Fallback for browsers that don't support roundRect
+            ctx.moveTo(x + r, y)
+            ctx.lineTo(x + w - r, y)
+            ctx.quadraticCurveTo(x + w, y, x + w, y + r)
+            ctx.lineTo(x + w, y + h - r)
+            ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h)
+            ctx.lineTo(x + r, y + h)
+            ctx.quadraticCurveTo(x, y + h, x, y + h - r)
+            ctx.lineTo(x, y + r)
+            ctx.quadraticCurveTo(x, y, x + r, y)
+            ctx.closePath()
+          }
           ctx.clip()
 
           ctx.drawImage(
