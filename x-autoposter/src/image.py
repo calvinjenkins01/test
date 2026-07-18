@@ -17,13 +17,14 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont
 WIDTH, HEIGHT = 1600, 900
 SCALE = 2
 
-STYLE = "midnight"  # default style used by main.py
+STYLE = "terminal"  # default style used by main.py
 BRAND = "AI PULSE"
 TAG = "AI NEWS"
 
 SANS_BOLD = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 SANS = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
 SERIF_BOLD = "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf"
+SERIF = "/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf"
 MONO_BOLD = "/usr/share/fonts/truetype/dejavu/DejaVuSansMono-Bold.ttf"
 
 
@@ -269,11 +270,81 @@ def _style_poster(headline, subheadline, out_path):
     return _finish(img, out_path)
 
 
+def _style_broadsheet(headline, subheadline, out_path):
+    """Classic newspaper front page: centered masthead, rules, columns of body text."""
+    w, h, m = WIDTH * SCALE, HEIGHT * SCALE, 100 * SCALE
+    ink = (26, 24, 22)
+    faint = (150, 146, 138)
+    img, draw = _new_canvas()
+    draw.rectangle([0, 0, w, h], fill=(249, 247, 240))
+
+    # Masthead, centered.
+    # Title-case the brand but keep short acronyms (AI, GPT...) uppercase.
+    masthead = "The " + " ".join(
+        word if word.isupper() and len(word) <= 3 else word.capitalize()
+        for word in BRAND.split()
+    )
+    mast_font = _font(SERIF_BOLD, 92 * SCALE)
+    mast_w = draw.textlength(masthead, font=mast_font)
+    draw.text(((w - mast_w) / 2, 46 * SCALE), masthead, font=mast_font, fill=ink)
+
+    # Dateline between double rules.
+    small = _font(SERIF_BOLD, 26 * SCALE)
+    y = 182 * SCALE
+    draw.line([(m, y), (w - m, y)], fill=ink, width=3 * SCALE)
+    draw.line([(m, y + 8 * SCALE), (w - m, y + 8 * SCALE)], fill=ink, width=1 * SCALE)
+    dateline = time.strftime("VOL. I  •  %A, %B %d, %Y  •  THE DAILY AI EDITION").upper()
+    dl_w = draw.textlength(dateline, font=small)
+    draw.text(((w - dl_w) / 2, y + 26 * SCALE), dateline, font=small, fill=(90, 87, 80))
+    y2 = y + 84 * SCALE
+    draw.line([(m, y2), (w - m, y2)], fill=ink, width=1 * SCALE)
+
+    # Headline, centered serif.
+    lines, hfont, size = _fit(draw, headline, SERIF_BOLD, w - 2 * m, 2, start=96, floor=52)
+    line_h = int(size * 1.14)
+    y = y2 + 56 * SCALE
+    for line in lines:
+        lw = draw.textlength(line, font=hfont)
+        draw.text(((w - lw) / 2, y), line, font=hfont, fill=ink)
+        y += line_h
+
+    # Subheadline, centered, lighter serif.
+    y += 22 * SCALE
+    sub_font = _font(SERIF, 38 * SCALE) if Path(SERIF).exists() else _font(SANS, 38 * SCALE)
+    for line in _wrap(draw, subheadline, sub_font, int(w * 0.72))[:2]:
+        lw = draw.textlength(line, font=sub_font)
+        draw.text(((w - lw) / 2, y), line, font=sub_font, fill=(80, 77, 70))
+        y += 52 * SCALE
+
+    # Three columns of faux body text (light bars) below a thin rule.
+    y += 30 * SCALE
+    draw.line([(m, y), (w - m, y)], fill=ink, width=1 * SCALE)
+    y += 30 * SCALE
+    col_gap = 50 * SCALE
+    col_w = (w - 2 * m - 2 * col_gap) // 3
+    bar_h, bar_gap = 10 * SCALE, 18 * SCALE
+    for col in range(3):
+        cx = m + col * (col_w + col_gap)
+        by = y
+        row = 0
+        while by + bar_h < h - 70 * SCALE:
+            # Vary bar length for a realistic ragged-right column.
+            frac = [1.0, 0.96, 0.99, 0.93, 0.97, 0.6][row % 6]
+            draw.rectangle([cx, by, cx + int(col_w * frac), by + bar_h], fill=(205, 201, 192))
+            by += bar_h + bar_gap
+            row += 1
+        if col < 2:
+            draw.line([(cx + col_w + col_gap // 2, y), (cx + col_w + col_gap // 2, h - 70 * SCALE)],
+                      fill=(190, 186, 178), width=1 * SCALE)
+    return _finish(img, out_path)
+
+
 STYLES = {
     "midnight": _style_midnight,
     "editorial": _style_editorial,
     "terminal": _style_terminal,
     "poster": _style_poster,
+    "broadsheet": _style_broadsheet,
 }
 
 
