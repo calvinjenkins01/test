@@ -1,0 +1,51 @@
+{
+  "name": "claude-5-things",
+  "slides": [
+    {
+      "kind": "hook",
+      "cmd": "claude --what-is-it-used-for",
+      "text": "5 things you didn't know Claude could do",
+      "sub": "Everyone's searching 'what is Claude used for' right now. Here's the answer."
+    },
+    {
+      "kind": "point",
+      "num": 1,
+      "of": 5,
+      "text": "Reads a 100-page PDF in seconds",
+      "sub": "Drop in a contract, a manual, a lease. Then just ask: 'what should I be worried about in here?'"
+    },
+    {
+      "kind": "point",
+      "num": 2,
+      "of": 5,
+      "text": "Builds working apps from one sentence",
+      "sub": "'Build me a tip calculator with a dark theme.' It appears. It works. No code knowledge needed."
+    },
+    {
+      "kind": "point",
+      "num": 3,
+      "of": 5,
+      "text": "Cleans your messiest spreadsheet",
+      "sub": "Sorted, deduped, formatted — and it explains every change it made."
+    },
+    {
+      "kind": "point",
+      "num": 4,
+      "of": 5,
+      "text": "Writes in YOUR voice",
+      "sub": "Paste 3 of your old emails. It learns your tone and drafts replies that sound like you."
+    },
+    {
+      "kind": "point",
+      "num": 5,
+      "of": 5,
+      "text": "It can now use your browser FOR you",
+      "sub": "Research, forms, comparisons — Claude clicks so you don't have to. (Full video on my page.)"
+    },
+    {
+      "kind": "cta",
+      "text": "Save this. You'll need it.",
+      "sub": "Follow @techyai_cj — one 'things you didn't know' drop every week."
+    }
+  ]
+}
