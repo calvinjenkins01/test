@@ -61,13 +61,13 @@ def _render_task(task) -> list[str]:
 
 
 def build_message(weekday: str, tasks: list) -> str:
-    lines = [f"🔥 CJ CONTENT — {weekday.upper()} 🔥"]
+    lines = [f"🔥 CJ CONTENT: {weekday.upper()} 🔥"]
     for task in tasks:
         lines.append("")
         lines += _render_task(task)
     lines.append("")
     if any("Post" in _task_line(t) for t in tasks):
-        lines.append("💬 Reply to every comment in the first hour — that's what makes the algorithm push you.")
+        lines.append("💬 Reply to every comment in the first hour, that's what makes the algorithm push you.")
     lines.append("📲 Full scripts live in our Claude chat.")
     lines.append("Go get it 🚀")
     return "\n".join(lines)

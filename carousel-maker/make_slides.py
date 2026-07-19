@@ -94,7 +94,7 @@ def _footer(draw, x0, x1, y1, page, total):
 
 def render_slide(slide, page, total, out_path):
     img, draw = _canvas()
-    x0, y0, x1, y1 = _terminal_frame(draw, slide.get("window", f"{BRAND} — daily briefing"))
+    x0, y0, x1, y1 = _terminal_frame(draw, slide.get("window", f"{BRAND} • daily briefing"))
     m = x0 + 50 * S
     max_w = x1 - m - 50 * S
     kind = slide["kind"]

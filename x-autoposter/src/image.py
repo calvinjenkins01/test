@@ -190,7 +190,7 @@ def _style_terminal(headline, subheadline, out_path):
         cx = tx0 + (44 + i * 52) * SCALE
         draw.ellipse([cx, ty0 + 26 * SCALE, cx + 26 * SCALE, ty0 + 52 * SCALE], fill=color)
     title_font = _font(MONO_BOLD, 28 * SCALE)
-    title = f"{BRAND.lower().replace(' ', '-')} — daily briefing"
+    title = f"{BRAND.lower().replace(' ', '.')} • daily briefing"
     draw.text(((tx0 + tx1) / 2 - draw.textlength(title, font=title_font) / 2, ty0 + 24 * SCALE),
               title, font=title_font, fill=(150, 160, 170))
 
