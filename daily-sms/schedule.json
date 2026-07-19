@@ -19,11 +19,11 @@
     ],
     "2026-07-20": [
       {
-        "line": "3pm Post Video 1 '5 things Claude' to TikTok + IG",
+        "line": "3pm Post Video 1 '5 things Claude' to TikTok + IG + YouTube Shorts",
         "hook": "Everyone's suddenly asking what Claude is actually used for. Here's what nobody shows you.",
         "caption": "TikTok: What is Claude used for? 5 things you didn't know Claude could do 🤯 Claude tips for beginners, how to use Claude in 2026. Which one surprised you? #Claude #AI #AITools",
         "caption_ig": "5 things you didn't know Claude AI could do, send #2 to your friend who still codes everything by hand 😅 Save this. #Claude #AI #AITools #Productivity",
-        "tip": "Say 'what Claude is actually used for' out loud in the first 3 seconds, TikTok indexes your speech for search."
+        "tip": "Say 'what Claude is actually used for' out loud in the first 3 seconds, TikTok indexes your speech for search. YouTube title: 'What is Claude Used For? 5 Things You Didn't Know' #Shorts"
       },
       {
         "line": "5pm FILM Setup C: videos 2 & 3 (talking heads)",
@@ -36,7 +36,7 @@
         "tip": "Article #2 + 'Claude Can Now Log Into Your Accounts' image from chat."
       },
       {
-        "line": "1pm Post Video 2 'Claude logs into accounts' to TikTok + IG",
+        "line": "1pm Post Video 2 'Claude logs into accounts' to TikTok + IG + YouTube Shorts",
         "hook": "Claude can now log into your accounts for you. And no, that's not a hack, it's official.",
         "caption": "Claude can now use your 1Password logins, what is Anthropic even building? AI that actually DOES things is here. Would you trust it? #Claude #AI #TechNews #Anthropic",
         "tip": "End on the question, comment debates are fuel for this one."
@@ -44,7 +44,7 @@
     ],
     "2026-07-22": [
       {
-        "line": "1pm Post Video 3 'Teachers free Claude' to TikTok + IG",
+        "line": "1pm Post Video 3 'Teachers free Claude' to TikTok + IG + YouTube Shorts",
         "hook": "Teachers, you get premium AI free for a whole year, and most of you still haven't claimed it.",
         "caption": "Teachers just won, free premium Claude AI for a year + student data protection. 3 things you didn't know. Tag a teacher 🍎 #Teachers #AI #Claude #TeachersOfTikTok",
         "tip": "The tag a teacher CTA drives shares, shares are weighted heaviest."
@@ -64,7 +64,7 @@
         "line": "10am Post X article #3 (psychology prompt) + header image"
       },
       {
-        "line": "1pm Post Video 4 + Carousel #2 to TikTok",
+        "line": "1pm Post Video 4 + Carousel #2 to TikTok, video also to YouTube Shorts",
         "hook": "This psychology prompt made ChatGPT describe me better than my own friends can.",
         "caption": "The ChatGPT psychology prompt 🧠 Copy it: \"Based on everything you know about me from our chats, act as a psychologist. Tell me the patterns you see in how I think, what probably drives me, and one blind spot I have. Be specific, not flattering.\" Rate yours 1 to 10 below. #ChatGPT #AI #Psychology #Prompts",
         "tip": "Prompt in the caption = saves. Say 'full prompt in the caption' out loud in the video."
@@ -72,7 +72,7 @@
     ],
     "2026-07-24": [
       {
-        "line": "1pm Post Video 5 'Talking to ChatGPT wrong' to TikTok + IG",
+        "line": "1pm Post Video 5 'Talking to ChatGPT wrong' to TikTok + IG + YouTube Shorts",
         "hook": "You've been talking to ChatGPT wrong. Three fixes, and it gets scary good.",
         "caption": "TikTok: How to talk with ChatGPT, 3 mistakes everyone makes. How to use ChatGPT like the top 1% of users. Save this 🔖 #ChatGPT #AI #AITips #HowToUseChatGPT",
         "caption_ig": "You've been using ChatGPT wrong, 3 fixes 🔖 Save this and send it to the person who types 'help with essay.' #ChatGPT #AI #AITips",
@@ -84,7 +84,7 @@
         "line": "10am Post X article #4 (Claude for business) + header image"
       },
       {
-        "line": "11am Post Video 6 'trades part 3' to TikTok + IG",
+        "line": "11am Post Video 6 'trades part 3' to TikTok + IG + YouTube Shorts",
         "hook": "If you run an HVAC or roofing company, Claude can quote jobs while you're still on the roof.",
         "caption": "TikTok: Claude for business, 3 ways trade businesses (HVAC, roofing, plumbing) use AI in 2026. Part 3 🔧 What trade next? #ClaudeForBusiness #SmallBusiness #HVAC #Trades #AI",
         "caption_ig": "Running a trade business without AI in 2026 is leaving money on the table 🔧 Send this to a business owner. #SmallBusiness #AI #HVAC #Claude",
@@ -98,11 +98,26 @@
       "11am Post carousel",
       "12pm Post X article"
     ],
-    "monday": ["1pm Post today's video to TikTok + IG"],
-    "tuesday": ["10am Post X article", "1pm Post today's video to TikTok + IG"],
-    "wednesday": ["1pm Post today's video to TikTok + IG"],
-    "thursday": ["10am Post X article", "1pm Post today's video to TikTok + IG"],
-    "friday": ["1pm Post today's video to TikTok + IG"],
-    "saturday": ["10am Post X article", "11am Post today's video to TikTok + IG"]
+    "monday": [
+      "1pm Post today's video to TikTok + IG + YouTube Shorts"
+    ],
+    "tuesday": [
+      "10am Post X article",
+      "1pm Post today's video to TikTok + IG + YouTube Shorts"
+    ],
+    "wednesday": [
+      "1pm Post today's video to TikTok + IG + YouTube Shorts"
+    ],
+    "thursday": [
+      "10am Post X article",
+      "1pm Post today's video to TikTok + IG + YouTube Shorts"
+    ],
+    "friday": [
+      "1pm Post today's video to TikTok + IG + YouTube Shorts"
+    ],
+    "saturday": [
+      "10am Post X article",
+      "11am Post today's video to TikTok + IG + YouTube Shorts"
+    ]
   }
 }
