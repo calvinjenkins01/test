@@ -26,23 +26,42 @@ def todays_tasks() -> tuple[str, list[str]]:
     return weekday, tasks
 
 
+def _emoji(task: str) -> str:
+    lowered = task.lower()
+    if "film" in lowered:
+        return "🎬"
+    if "carousel" in lowered:
+        return "📸"
+    if "x article" in lowered:
+        return "🐦"
+    if "video" in lowered:
+        return "🎥"
+    if "planning" in lowered:
+        return "🧠"
+    return "✅"
+
+
 def build_message(weekday: str, tasks: list[str]) -> str:
-    lines = [f"CJ CONTENT - {weekday.upper()}"]
-    lines += [f"- {t}" for t in tasks]
+    lines = [f"🔥 CJ CONTENT — {weekday.upper()} 🔥", ""]
+    lines += [f"{_emoji(t)} {t}" for t in tasks]
+    lines.append("")
     if any("Post" in t for t in tasks):
-        lines.append("Reply to every comment in the first hour!")
-    lines.append("Scripts + captions are in our Claude chat. Go get it.")
+        lines.append("💬 Reply to every comment in the first hour — that's what makes the algorithm push you.")
+    lines.append("📲 Scripts + captions are in our Claude chat.")
+    lines.append("Go get it 🚀")
     return "\n".join(lines)
 
 
 def build_week_message() -> str:
     schedule = json.loads(SCHEDULE.read_text())
-    lines = [f"CJ CONTENT WEEK ({schedule.get('week_label', '')})"]
+    lines = [f"🗓 CJ CONTENT WEEK ({schedule.get('week_label', '')}) 🗓"]
     for date_key in sorted(schedule["dates"]):
         day = datetime.strptime(date_key, "%Y-%m-%d").strftime("%a %b %d").upper()
-        lines.append(f"\n{day}:")
-        lines += [f"- {t}" for t in schedule["dates"][date_key]]
-    lines.append("\nDaily detail text arrives 7am each morning. Scripts in Claude chat.")
+        lines.append(f"\n📅 {day}")
+        lines += [f"{_emoji(t)} {t}" for t in schedule["dates"][date_key]]
+    lines.append("\n⏰ Your daily detail text arrives 7am every morning.")
+    lines.append("📲 Scripts + captions live in our Claude chat.")
+    lines.append("Big week. Let's build 🚀")
     return "\n".join(lines)
 
 
