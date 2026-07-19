@@ -93,6 +93,13 @@ def send_sms(body: str) -> None:
 
 
 def main() -> int:
+    if "--today-file" in sys.argv:
+        weekday, tasks = todays_tasks()
+        message = build_message(weekday, tasks) if tasks else f"No content tasks today ({weekday})."
+        out = Path(__file__).parent / "today.txt"
+        out.write_text(message + "\n")
+        print(f"Wrote {out} ({len(message)} chars)")
+        return 0
     if "--week" in sys.argv:
         message = build_week_message()
     else:

@@ -2,8 +2,8 @@ name: Daily content SMS
 
 on:
   schedule:
-    # 14:00 UTC = 7:00 AM Phoenix (no DST in Arizona)
-    - cron: "0 14 * * *"
+    # 13:45 UTC = 6:45 AM Phoenix — today.txt is ready before the 7am phone automation
+    - cron: "45 13 * * *"
   workflow_dispatch:
     inputs:
       mode:
@@ -15,6 +15,9 @@ on:
           - dry_run
         default: today
 
+permissions:
+  contents: write
+
 jobs:
   sms:
     runs-on: ubuntu-latest
@@ -25,7 +28,19 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Send today's content checklist
+      - name: Write today's checklist file (for iPhone automation)
+        run: python daily-sms/send_sms.py --today-file
+
+      - name: Commit today's checklist
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add daily-sms/today.txt
+          git diff --cached --quiet || git commit -m "Daily checklist $(date -u +%F)"
+          git push
+
+      - name: Send via Twilio (works after account upgrade; trial accounts skip)
+        continue-on-error: true
         env:
           TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
           TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
