@@ -46,6 +46,26 @@ def build_week_message() -> str:
     return "\n".join(lines)
 
 
+# Trial accounts prepend ~40 chars to every message; Twilio hard limit is 1600.
+MAX_SMS_CHARS = 1400
+
+
+def _chunks(body: str) -> list[str]:
+    if len(body) <= MAX_SMS_CHARS:
+        return [body]
+    parts, current = [], ""
+    for block in body.split("\n\n"):
+        candidate = f"{current}\n\n{block}".strip()
+        if len(candidate) > MAX_SMS_CHARS and current:
+            parts.append(current)
+            current = block
+        else:
+            current = candidate
+    if current:
+        parts.append(current)
+    return [f"({i}/{len(parts)})\n{p}" for i, p in enumerate(parts, 1)]
+
+
 def send_sms(body: str) -> None:
     sid = os.environ["TWILIO_ACCOUNT_SID"]
     token = os.environ["TWILIO_AUTH_TOKEN"]
@@ -53,16 +73,23 @@ def send_sms(body: str) -> None:
     to_number = os.environ["MY_PHONE_NUMBER"]
 
     url = f"https://api.twilio.com/2010-04-01/Accounts/{sid}/Messages.json"
-    data = urllib.parse.urlencode(
-        {"From": from_number, "To": to_number, "Body": body}
-    ).encode()
     auth = base64.b64encode(f"{sid}:{token}".encode()).decode()
-    request = urllib.request.Request(
-        url, data=data, headers={"Authorization": f"Basic {auth}"}
-    )
-    with urllib.request.urlopen(request, timeout=30) as resp:
-        result = json.loads(resp.read())
-    print(f"Sent: sid={result.get('sid')} status={result.get('status')}")
+
+    for part in _chunks(body):
+        data = urllib.parse.urlencode(
+            {"From": from_number, "To": to_number, "Body": part}
+        ).encode()
+        request = urllib.request.Request(
+            url, data=data, headers={"Authorization": f"Basic {auth}"}
+        )
+        try:
+            with urllib.request.urlopen(request, timeout=30) as resp:
+                result = json.loads(resp.read())
+            print(f"Sent part ({len(part)} chars): sid={result.get('sid')} status={result.get('status')}")
+        except urllib.error.HTTPError as err:
+            detail = err.read().decode(errors="replace")
+            print(f"Twilio error {err.code}: {detail}")
+            raise SystemExit(1)
 
 
 def main() -> int:
