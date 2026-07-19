@@ -145,7 +145,7 @@ def render_slide(slide, page, total, out_path):
         if slide.get("sub"):
             y += 34 * S
             sfont = _font(34 * S)
-            for line in _wrap(draw, slide["sub"], sfont, max_w)[:3]:
+            for line in _wrap(draw, slide["sub"], sfont, max_w)[:8]:
                 draw.text((m, y), line, font=sfont, fill=(235, 240, 238))
                 y += 50 * S
         # Blinking cursor.
