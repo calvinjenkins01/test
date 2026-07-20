@@ -26,46 +26,32 @@
         "tip": "One take, face to camera. Say 'what is Anthropic' in the first 3 seconds. YouTube title: 'What is Anthropic? Explained in 35 Seconds' #Shorts"
       },
       {
-        "line": "3pm Post Quick Video B 'I cloned my voice with AI' (ElevenLabs) to TikTok + IG + YouTube Shorts",
-        "hook": "This is the coolest thing you can do with AI right now. I cloned my own voice in two minutes. Listen.",
-        "caption": "TikTok: Cool things you can do with AI: I cloned my voice in 2 minutes and it speaks Spanish, which I don't 🤯 Wait for the last part. #AI #ElevenLabs #VoiceCloning #CoolThingsWithAI",
-        "caption_ig": "I cloned my voice with AI in 2 minutes and now it speaks languages I don't 🤯 The last 10 seconds is the part everyone should see. Send this to someone who thinks AI is all bad. #AI #VoiceCloning #ElevenLabs #TechTok",
-        "tip": "Before filming: elevenlabs.io Starter plan, clone your voice (read 1 to 2 min), generate the 'I am not real' line, dub a 10s clip to Spanish. YouTube title: 'I Cloned My Voice With AI in 2 Minutes (ElevenLabs)' #Shorts"
-      },
-      {
-        "line": "5pm FILM Setup C: videos 2 & 3 (talking heads)",
-        "tip": "Same backdrop, change shirts between the two so they don't look same-day."
+        "line": "Optional if time: film tomorrow's 1Password video (one take talking head)",
+        "tip": "Filming ahead by one day keeps posting stress free. Skip if today is packed."
       }
     ],
     "2026-07-21": [
       {
         "line": "10am Post X article #2 (1Password) + header image",
-        "tip": "Article #2 + 'Claude Can Now Log Into Your Accounts' image from chat."
+        "tip": "Article #2 + 'Claude Can Now Log Into Your Accounts' image from chat. No filming needed, just paste."
       },
       {
-        "line": "1pm Post Video 2 'Claude logs into accounts' to TikTok + IG + YouTube Shorts",
+        "line": "1pm Film + post Video 2 'Claude logs into accounts' to TikTok + IG + YouTube Shorts",
         "hook": "Claude can now log into your accounts for you. And no, that's not a hack, it's official.",
         "caption": "Claude can now use your 1Password logins, what is Anthropic even building? AI that actually DOES things is here. Would you trust it? #Claude #AI #TechNews #Anthropic",
-        "tip": "End on the question, comment debates are fuel for this one."
-      },
-      {
-        "line": "3pm Post Video 1 '5 things Claude' to TikTok + IG + YouTube Shorts",
-        "hook": "Everyone's suddenly asking what Claude is actually used for. Here's what nobody shows you.",
-        "caption": "TikTok: What is Claude used for? 5 things you didn't know Claude could do 🤯 Claude tips for beginners, how to use Claude in 2026. Which one surprised you? #Claude #AI #AITools",
-        "caption_ig": "5 things you didn't know Claude AI could do, send #2 to your friend who still codes everything by hand 😅 Save this. #Claude #AI #AITools #Productivity",
-        "tip": "Film the screen demos tonight or tomorrow morning. Say 'what Claude is actually used for' out loud in the first 3 seconds. YouTube title: 'What is Claude Used For? 5 Things You Didn't Know' #Shorts"
+        "tip": "One take talking head, your fastest format. End on the question, comment debates are fuel. This is the only filming today."
       }
     ],
     "2026-07-22": [
       {
+        "line": "BATCH FILM DAY: videos for Thu through Sat + ElevenLabs (5 to 6 videos)",
+        "tip": "Order: teachers, 5 things Claude screen demos, psychology prompt (run it FRESH on camera), talking to ChatGPT wrong, trades, ElevenLabs clone if you set it up. Change shirts between talking heads."
+      },
+      {
         "line": "1pm Post Video 3 'Teachers free Claude' to TikTok + IG + YouTube Shorts",
         "hook": "Teachers, you get premium AI free for a whole year, and most of you still haven't claimed it.",
         "caption": "Teachers just won, free premium Claude AI for a year + student data protection. 3 things you didn't know. Tag a teacher 🍎 #Teachers #AI #Claude #TeachersOfTikTok",
-        "tip": "The tag a teacher CTA drives shares, shares are weighted heaviest."
-      },
-      {
-        "line": "5pm FILM Setup B: video 4 (psychology prompt)",
-        "tip": "Run the prompt FRESH on camera, the genuine reaction is the video."
+        "tip": "Film this one first in the morning so it's ready by 1pm. The tag a teacher CTA drives shares, shares are weighted heaviest."
       }
     ],
     "2026-07-23": [
@@ -82,6 +68,17 @@
         "hook": "This psychology prompt made ChatGPT describe me better than my own friends can.",
         "caption": "The ChatGPT psychology prompt 🧠 Copy it: \"Based on everything you know about me from our chats, act as a psychologist. Tell me the patterns you see in how I think, what probably drives me, and one blind spot I have. Be specific, not flattering.\" Rate yours 1 to 10 below. #ChatGPT #AI #Psychology #Prompts",
         "tip": "Prompt in the caption = saves. Say 'full prompt in the caption' out loud in the video."
+      },
+      {
+        "line": "3pm Post Video 1 '5 things Claude' to TikTok + IG + YouTube Shorts",
+        "hook": "Everyone's suddenly asking what Claude is actually used for. Here's what nobody shows you.",
+        "caption": "TikTok: What is Claude used for? 5 things you didn't know Claude could do 🤯 Claude tips for beginners, how to use Claude in 2026. Which one surprised you? #Claude #AI #AITools",
+        "caption_ig": "5 things you didn't know Claude AI could do, send #2 to your friend who still codes everything by hand 😅 Save this. #Claude #AI #AITools #Productivity",
+        "tip": "Filmed Wednesday, just post. Say 'what Claude is actually used for' in the first 3 seconds. YouTube title: 'What is Claude Used For? 5 Things You Didn't Know' #Shorts"
+      },
+      {
+        "line": "Also film today if you have time: any video not finished Wednesday",
+        "tip": "Second heavy day. Anything filmed today makes Friday and Saturday post-only days."
       }
     ],
     "2026-07-24": [
@@ -91,6 +88,13 @@
         "caption": "TikTok: How to talk with ChatGPT, 3 mistakes everyone makes. How to use ChatGPT like the top 1% of users. Save this 🔖 #ChatGPT #AI #AITips #HowToUseChatGPT",
         "caption_ig": "You've been using ChatGPT wrong, 3 fixes 🔖 Save this and send it to the person who types 'help with essay.' #ChatGPT #AI #AITips",
         "tip": "Split-screen bad prompt vs good prompt sells each fix without explaining."
+      },
+      {
+        "line": "3pm Post ElevenLabs video 'I cloned my voice with AI' to TikTok + IG + YouTube Shorts",
+        "hook": "This is the coolest thing you can do with AI right now. I cloned my own voice in two minutes. Listen.",
+        "caption": "TikTok: Cool things you can do with AI: I cloned my voice in 2 minutes and it speaks Spanish, which I don't 🤯 Wait for the last part. #AI #ElevenLabs #VoiceCloning #CoolThingsWithAI",
+        "caption_ig": "I cloned my voice with AI in 2 minutes and now it speaks languages I don't 🤯 The last 10 seconds is the part everyone should see. Send this to someone who thinks AI is all bad. #AI #VoiceCloning #ElevenLabs #TechTok",
+        "tip": "Filmed Wednesday. YouTube title: 'I Cloned My Voice With AI in 2 Minutes (ElevenLabs)' #Shorts"
       }
     ],
     "2026-07-25": [
