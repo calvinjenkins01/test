@@ -12,6 +12,16 @@
 - Handle: @techyai_cj (TikTok, Instagram, X)
 - Niche: AI news, Claude, ChatGPT, building things with AI
 - Signature format: "Things you didn't know" countdown videos
+- Content pillars (CJ's chosen four, everything fits one of these):
+  1. Things you didn't know (signature discovery countdowns)
+  2. AI news with a take (day-of speed, developer perspective)
+  3. Technical authority (software developer + cybersecurity angles,
+     credibility line "I'm a software developer" in scripts)
+  4. How-to workflows (practical AI recipes: exact prompts, settings,
+     step by step tasks people can copy)
+- Every video ends with a usable takeaway (prompt to copy, setting to
+  change, thing to try) plus an engineered CTA (comment bait, send this
+  to, or save this)
 - Visual style: terminal aesthetic (default card style "terminal" in x-autoposter,
   matching carousel-maker slides)
 
