@@ -22,6 +22,10 @@
 - Every video ends with a usable takeaway (prompt to copy, setting to
   change, thing to try) plus an engineered CTA (comment bait, send this
   to, or save this)
+- Every TikTok and IG caption STARTS with a comment keyword line, e.g.
+  Comment "SLIDES" and I'll reply with the exact prompt, then the rest of
+  the caption. The keyword must promise something CJ can actually deliver
+  (in replies now; via auto DM once the ManyChat funnel exists)
 - Visual style: terminal aesthetic (default card style "terminal" in x-autoposter,
   matching carousel-maker slides)
 
