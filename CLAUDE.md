@@ -26,6 +26,12 @@
   Comment "SLIDES" and I'll reply with the exact prompt, then the rest of
   the caption. The keyword must promise something CJ can actually deliver
   (in replies now; via auto DM once the ManyChat funnel exists)
+- Two layer hooks: the SPOKEN hook carries the TikTok search phrase; the
+  ON SCREEN text is a separate short curiosity line, 4 to 8 words, bold
+  claim or curiosity gap, never a descriptive title
+- IG captions use only 3 to 4 targeted hashtags (TikTok can carry 4 to 5)
+- Daily habit: after replying to own comments, CJ leaves 3 to 5 smart
+  comments on bigger AI creator accounts (free discovery)
 - Visual style: terminal aesthetic (default card style "terminal" in x-autoposter,
   matching carousel-maker slides)
 
