@@ -32,6 +32,14 @@
 - IG captions use only 3 to 4 targeted hashtags (TikTok can carry 4 to 5)
 - Daily habit: after replying to own comments, CJ leaves 3 to 5 smart
   comments on bigger AI creator accounts (free discovery)
+- Flagship series: "Things you didn't know" gets a fixed weekly slot and
+  strict numbering (part 3, part 4, ...) forever; the visible catalog is
+  the follow driver. Differentiator vs faceless series accounts: CJ's
+  face, developer credential, and same day news speed
+- Workflow videos: the exact prompt goes in the caption word for word
+  (Prompt 👇 style), copyable text drives saves
+- When a good question lands in comments, answer it with TikTok's reply
+  with video feature (at least one per week once comments pick up)
 - Visual style: terminal aesthetic (default card style "terminal" in x-autoposter,
   matching carousel-maker slides)
 
