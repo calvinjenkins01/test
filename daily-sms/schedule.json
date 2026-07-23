@@ -116,6 +116,10 @@
         "line": "9am Planning session with Claude: week 2 content + he builds your website (link hub, free prompt guide PDF, email signup, affiliate links)",
         "tip": "Bring screenshots FIRST: Creator Search Insights + every post's stats from this week. Before Sunday: sign up for ElevenLabs, Kit, and ManyChat affiliate programs so the links are ready for the hub."
       },
+      {
+        "line": "After planning: set up Manus weekly planner (Sunday 6pm task + 6:30am daily email)",
+        "tip": "Full setup instructions are in our Claude chat from Thursday. Test with 'run now' before trusting the schedule. Point it at the schedule.json raw URL so content flows in automatically."
+      },
       "11am Post week 2 carousel",
       "12pm Post week 2 X article"
     ]
